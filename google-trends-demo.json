@@ -1,0 +1,97 @@
+{
+  "name": "Automatron — Trends array demo (fictional data, manual only)",
+  "active": false,
+  "nodes": [
+    {
+      "id": "start-manually",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "fictional-report",
+      "name": "Fictional report — replace with your REPORT",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Fictional data. This code makes no requests and starts no Actor.\nreturn [{ json: {\n  \"schemaVersion\": 1,\n  \"status\": \"completed\",\n  \"country\": \"US\",\n  \"observedAt\": \"2026-10-25T00:00:00.000Z\",\n  \"demonstration\": \"Fictional example data; not current trends, customer activity or an Apify run.\",\n  \"source\": \"https://trends.google.com/trending/rss?geo=US\",\n  \"coverage\": {\n    \"available\": 2,\n    \"returned\": 2,\n    \"truncated\": false,\n    \"duplicatesRemoved\": 0,\n    \"omittedNewsLinks\": 0,\n    \"requests\": 1\n  },\n  \"trends\": [\n    {\n      \"key\": \"demo-topic-one\",\n      \"country\": \"US\",\n      \"topic\": \"Fictional topic: city garden\",\n      \"approximateTraffic\": \"200+\",\n      \"sourcePublishedAt\": \"2026-10-25T00:00:00.000Z\",\n      \"observedAt\": \"2026-10-25T00:00:00.000Z\",\n      \"exploreUrl\": \"https://trends.google.com/trending?geo=US\",\n      \"sourceFeedUrl\": \"https://trends.google.com/trending/rss?geo=US\",\n      \"news\": [\n        {\n          \"title\": \"Fictional source reference\",\n          \"url\": \"https://example.com/garden\",\n          \"publisher\": \"Example publisher\"\n        }\n      ]\n    },\n    {\n      \"key\": \"demo-topic-two\",\n      \"country\": \"US\",\n      \"topic\": \"Fictional topic: night sky\",\n      \"approximateTraffic\": \"500+\",\n      \"sourcePublishedAt\": \"2026-10-25T00:00:00.000Z\",\n      \"observedAt\": \"2026-10-25T00:00:00.000Z\",\n      \"exploreUrl\": \"https://trends.google.com/trending?geo=US\",\n      \"sourceFeedUrl\": \"https://trends.google.com/trending/rss?geo=US\",\n      \"news\": [\n        {\n          \"title\": \"Another fictional source reference\",\n          \"url\": \"https://example.com/sky\",\n          \"publisher\": \"Example publisher\"\n        }\n      ]\n    }\n  ],\n  \"limitations\": [\n    \"Fictional demonstration only. Traffic buckets and topics here are invented for testing.\",\n    \"The live Actor returns a current RSS snapshot, not history, exact search volume or predictions.\"\n  ],\n  \"releaseDigest\": \"DEMONSTRATION_ONLY_NOT_A_RELEASE_RECEIPT\"\n} }];"
+      }
+    },
+    {
+      "id": "split-topics",
+      "name": "One item per topic",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        500,
+        0
+      ],
+      "parameters": {
+        "fieldToSplitOut": "trends",
+        "include": "selectedOtherFields",
+        "fieldsToInclude": "country,observedAt,demonstration",
+        "options": {
+          "destinationFieldName": "topic",
+          "includeBinary": false
+        }
+      }
+    },
+    {
+      "id": "instructions",
+      "name": "Read before using real data",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -460
+      ],
+      "parameters": {
+        "width": 760,
+        "height": 400,
+        "content": "# Turn a trends report into topic items\n\nThis manual demo uses fictional, timestamped data. Click Execute workflow to see two topic items. It makes no network requests and starts no Actor. Keep the demo label attached to these rows.\n\nFor real topics, use your own account at https://apify.com/automatron/google-trends-now-feed with input:\n```json\n{\"country\":\"US\",\"maxItems\":20}\n```\nRead the completed run's REPORT, or its single dataset report row. Replace the fictional report node with that report. Keep the Split Out node on trends; each output has topic, country and observedAt. Test manually before considering recurrence.\n\nPrice and limitations: $0.01 per completed nonempty live country feed, up to 20 topics. US, GB, BE, DE, FR only. Current RSS topics; no keyword history, exact volume or predictions. Separate n8n hosting and Apify post-run reads/storage costs may apply. This demonstration causes no Apify event charge.\n\nBookmark the Actor if useful for later. After actual use, an honest review of what worked and what needs improvement is welcome. No incentive or star score is requested.\n\nAI disclosure: prepared with AI assistance and checked against the Actor contract."
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fictional report — replace with your REPORT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fictional report — replace with your REPORT": {
+      "main": [
+        [
+          {
+            "node": "One item per topic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "tags": [],
+  "meta": {
+    "automatronActionId": "6e14c4ab6738a7ddcef58ce66bdf6e4eef83a7c705500679b17bdb3b08ced6b3"
+  }
+}
