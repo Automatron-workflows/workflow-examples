@@ -4,6 +4,8 @@ SEO agencies often have a list of placement pages and need evidence of whether t
 
 ## Example
 
+Copy the [Aura · Backlink placement verification starter](https://app.clay.com/shared-table/share_0tnhdnt7vPYo7MMeMBP), or follow the steps below. Its public preview contains one IANA input, buyer setup instructions and clearly labelled synthetic examples. The copied table preserves Manual mode and its description but starts with zero rows: add one row and paste the input below. It contains no Apify connection or executable enrichment; add the native action using your own account. Copying does not run the checker.
+
 Start with one public example, using your own Apify connection:
 
 ```json
@@ -22,7 +24,7 @@ To compare a later run, keep the same target and save the real completed digests
 
 The fee is **$0.004 per completed page check**; unknown results are unbilled by the Actor. Clay usage, other platform charges and repeated runs may add costs under your own plans. This checks fetched HTML, not every possible browser-rendered state. It does not include notifications, automatic baseline rotation or backlink discovery.
 
-This is a manual setup guide. A copyable native Clay template and live Clay execution have not been verified. The example input is checked offline; it is not a fabricated customer success story. Use the [complete published walkthrough](https://apify.com/automatron/backlink-checker#check-backlink-placements-from-clay) for the current product contract.
+The shared starter's public preview, copying and disabled automatic runs were checked on 25 October 2026. Live Clay-to-Apify execution and Clay marketplace acceptance remain unverified. The synthetic examples illustrate Present, Missing in HTML and Unknown; they are not observations of the IANA input or customer success stories. Use the [complete published walkthrough](https://apify.com/automatron/backlink-checker#check-backlink-placements-from-clay) for the current product contract.
 
 ## Support
 
@@ -30,4 +32,4 @@ Purchase through [Automatron on Apify](https://apify.com/automatron/backlink-che
 
 AI disclosure: this tutorial was prepared with AI assistance and checked against the product's source and example tests.
 
-<!-- automatron-action:4a12fb26383b43229fe3fbca9ece31139965aa5c7ca0799312b0c9addaff83d2 -->
+<!-- automatron-action:f881f98e31ee66e36868430c922d9debd530c9bfb9f5987f8e6c0126a95d16dc -->
