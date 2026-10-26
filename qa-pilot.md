@@ -6,9 +6,34 @@
 
 An Actor run can succeed while its output still breaks the next step of your workflow. Check Charlie checks a small exported JSON sample against expectations you declare, then explains failures and coverage gaps with row numbers.
 
-This is an opt-in, local Automatron QA pilot. It costs **$0 for the sample check**. It starts no Actor, calls no model and fetches no sample URLs. Exporting data or running an Actor separately can incur charges under your own plans. You do not need to run anything again to participate.
+Charlie is available in two ways. Both use the same deterministic sample checks; neither calls a model, fetches sample URLs or runs the Actor being checked.
 
-## Request a sample check
+| How you want to use Charlie | Start here | Price and delivery |
+| --- | --- | --- |
+| Run a check on demand or from an automation | [Check Charlie on Apify](https://apify.com/automatron/check-charlie-output-qa) | **$0.01 per completed report**, delivered to your Apify dataset and run storage |
+| Request an asynchronous check of a public, redacted sample | [GitHub sample-check instructions below](#request-a-free-github-sample-check) | **$0 for the sample check**; public issue and report, subject to available capacity |
+
+Exporting data, upstream collection and any separately metered platform services remain subject to your own plans. The GitHub route starts no Actor. Neither route requires rerunning the source Actor to check an existing export.
+
+## Run Charlie on Apify
+
+1. Open [Check Charlie's Apify listing](https://apify.com/automatron/check-charlie-output-qa). Keep the fictional default input for a demonstration, or use either redacted evidence bundle below.
+2. In the Actor's Input form, paste the bundle into the **bundle** field. In the full JSON editor or API, wrap it in an object with exactly one property, `bundle`. The GitHub issue format instead takes the bare bundle, preceded by the consent line below.
+3. Select the qualified build **0.1.1**, 256 MB memory, a 60-second timeout and a **$0.01 maximum total charge**. Start one manual run in your own account.
+4. Read **REPORT**, **REPORT-MARKDOWN** or the default dataset. **SUMMARY** records completion and billing status. Branch on `counts.fail > 0` to find contract defects; handle NOT TESTED separately.
+
+For an API client that already holds one of the JSON bundles below, the conversion is:
+
+```javascript
+const input = { bundle };
+const requestBody = JSON.stringify(input);
+```
+
+Submit that body to `https://api.apify.com/v2/actors/automatron~check-charlie-output-qa/runs?build=0.1.1&memory=256&timeout=60&maxTotalChargeUsd=0.01` using your own Apify bearer token in the authorization header. Wait for the returned run to finish before retrieving its dataset and SUMMARY. Keep tokens out of inputs and public issues.
+
+A completed report that finds defects is a successful, billable delivery. The $0.01 event is requested only after both report files and the dataset item are saved. Empty samples and samples without testable field checks incur no completion fee. Invalid input and failed delivery also incur no completion fee. If SUMMARY says `reconciliation_required`, inspect the saved output and charge receipt before another run; do not automatically retry an uncertain delivery or charge. Separate runs may incur separate fees. The Store's **$10 per 1,000 reports** display means **$0.01 per report**, not $10 per run.
+
+## Request a free GitHub sample check
 
 Open an [issue titled `[Check Charlie QA] Sample check`](https://github.com/Automatron-workflows/workflow-examples/issues/new?title=%5BCheck%20Charlie%20QA%5D%20Sample%20check). The issue and report will be public. Submit only data you may share publicly, with credentials, personal information and customer data removed. Requests are handled by Aura's existing local daily cycle when available; there is no response-time guarantee. Reports share our three-publications-per-week limit, so a prepared report may wait for capacity.
 
@@ -77,6 +102,6 @@ Only the typed contract controls checks. Arbitrary JavaScript, remote schemas, p
 
 After receiving a report, optionally reply with `QA feedback: useful` or `QA feedback: not useful`. Describe fixes in a separate comment if helpful. There is no review exchange, reward or requested star score. Reports belong to this QA discussion and are not reviews of another Actor. Return only when a changed export or contract needs another check.
 
-AI disclosure: this guide was prepared with AI assistance. Both deliberately broken demonstrations and corrected variants are checked by local automated tests. Sample checks use deterministic code, with no external model dependency. Check Charlie's original dots+dots QA identity is reused; this pilot is not a new Apify Actor or a claim that the full dots+dots service has been independently qualified.
+AI disclosure: this guide was prepared with AI assistance. Both deliberately broken demonstrations and corrected variants are checked by local automated tests. Sample checks use deterministic code, with no external model dependency. Check Charlie's original dots+dots QA identity is reused for the public Apify Actor and the separate free GitHub pilot. Neither is a claim that the full dots+dots service has been independently qualified.
 
-<!-- automatron-action:9c36419b7d9575d53ad4f9e8aee53c3fae29b991fac34206d537dc9b45b0ae25 -->
+<!-- automatron-action:360404842c1d7aa4a7b435f41d6cf1c38d8d34b82d415e6f8f2545f2983d8d5b -->
