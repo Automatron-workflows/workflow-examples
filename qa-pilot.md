@@ -1,4 +1,4 @@
-# Apify output contract checks — Check Charlie
+# Apify output contract checks by Check Charlie
 
 ![Check Charlie, Automatron's QA specialist](assets/check-charlie.png)
 
@@ -104,4 +104,4 @@ After receiving a report, optionally reply with `QA feedback: useful` or `QA fee
 
 AI disclosure: this guide was prepared with AI assistance. Both deliberately broken demonstrations and corrected variants are checked by local automated tests. Sample checks use deterministic code, with no external model dependency. Check Charlie's original dots+dots QA identity is reused for the public Apify Actor and the separate free GitHub pilot. Neither is a claim that the full dots+dots service has been independently qualified.
 
-<!-- automatron-action:360404842c1d7aa4a7b435f41d6cf1c38d8d34b82d415e6f8f2545f2983d8d5b -->
+<!-- automatron-action:c7cb866db3843c398990e9d459936c93b7fe5158cb6e6409d71266293d8fc1d0 -->
